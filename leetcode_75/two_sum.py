@@ -4,10 +4,13 @@ import unittest
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(0, len(nums) - 1):
-            for j in range(1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
+        map = {}  # number => index
+        for idx, num in enumerate(nums):
+            target_key = target - num
+            if target_key in map:
+                return [idx, map[target_key]]
+            else:
+                map[num] = idx
         return []
 
 
